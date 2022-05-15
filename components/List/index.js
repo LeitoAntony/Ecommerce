@@ -1,29 +1,31 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Pressable } from "react-native";
 import ProductItem from "./ProductItem";
-import CategoryItem from './CategoryItem'
+import CategoryItem from "./CategoryItem";
 
-const List = ({ data, itemType = 'category' }) => {
+const List = ({ data, itemType = "category", onPress }) => {
 
-    const fnRender = ({item}) => {
-        return(
-            itemType === "category" ?
-            <CategoryItem category={item}/>
-            :
-            <ProductItem/>
-        )
-    }
-
+  const fnRender = ({ item }) => {
     return (
-        <FlatList
-            numColumns={itemType === "category" ? 2: 1}
-            data={data}
-            renderItem={fnRender}
-            keyExtractor={item => item.id}
-        />
-    )
-}
+      <Pressable onPress={() => onPress(item)}>
+        {itemType === "category" ? (
+          <CategoryItem category={item} />
+        ) : (
+          <ProductItem product={item} />
+        )}
+      </Pressable>
+    );
+  };
 
-export default List
+  return (
+    <FlatList
+      numColumns={itemType === "category" ? 2 : 1}
+      data={data}
+      renderItem={fnRender}
+      keyExtractor={(item) => item.id}
+    />
+  );
+};
 
-const styles = StyleSheet.create({
-})
+export default List;
+
+const styles = StyleSheet.create({});

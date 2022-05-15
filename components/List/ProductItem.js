@@ -1,14 +1,24 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { colors } from "../../Styles/Colors";
+import Card from "../Card";
 
-const ProductItem = ({ data, category = true }) => {
-    return (
-        <View></View>
-    )
-}
+const ProductItem = ({ product }) => {
+  return (
+    <View>
+      <Card title={product.description}>
+        <Image source={{ uri: product.image }} style={styles.image} />
+      </Card>
+    </View>
+  );
+};
 
-export default ProductItem
+export default ProductItem;
 
 const styles = StyleSheet.create({
-    
-})
+  image: {
+    width: 300,
+    height:300,
+    resizeMode: 'cover',
+    borderRadius:10,
+  },
+});

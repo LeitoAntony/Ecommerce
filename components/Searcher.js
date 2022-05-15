@@ -1,4 +1,3 @@
-import { Children } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../Styles/Colors";
 
@@ -17,9 +16,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: colors.primary,
         width: '100%',
-        marginVertical: 10,
+        margin: 10,
+        padding: 10,
         shadowColor: "#000",
-        justifyContent: 'space-between',
+        alignItems:'center',
+        justifyContent:'center',
         shadowOffset: {
             width: 0,
             height: 6,
