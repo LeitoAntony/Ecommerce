@@ -7,7 +7,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  TouchableOpacity
 } from "react-native";
+import { Entypo } from '@expo/vector-icons';
 import Header from "../components/Header";
 import Searcher from "../components/Searcher";
 import { PRODUCTS } from "../Data/Products";
@@ -50,36 +52,34 @@ const ProductScreen = ({
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.keyboardAvoid}
-      keyboardVerticalOffset={10}
-    >
-        <Header title={category.category} />
-        <View style={styles.container}>
-          <Searcher>
-            <TextInputCustom
-              input={input}
-              setInput={setInput}
-              onPress={handleDeletesearch}
-              placeholder="Elegir producto"
-            />
-            <BtnDelete
-              input={input}
-              setInput={setInput}
-              onPress={handleDeletesearch}
-              iconName="erase"
-            />
-          </Searcher>
-          <View style={styles.listContainer}>
-            <List
-              data={productsFilter}
-              itemType="product"
-              onPress={handleProduct}
-            />
-            <Button title="Atras" onPress={() => handleCategory(null)} />
-          </View>
-        </View>
-    </KeyboardAvoidingView>
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.keyboardAvoid}
+        >
+            <Header title={category.category} />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <Searcher additionalStyles={{
+                        backgroundColor: colors.lightBlue
+                    }}>
+                        <TextInputCustom
+                            value={input}
+                            onChangeText={setInput}
+                            keyboardType="default"
+                            style={styles.input}
+                            placeholder="Ingrese producto a buscar"
+                        />
+                        <TouchableOpacity onPress={handleDeletesearch}>
+                            <Entypo name="erase" size={30} color="black" />
+                        </TouchableOpacity>
+                    </Searcher>
+                    <View style={styles.listContainer}>
+                        <List data={productsFilter} itemType={"Producto"} onPress={handleProduct} />
+                        <Button title='Go back' onPress={() => handleCategory(null)} />
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
+
+        </KeyboardAvoidingView>
   );
 };
 export default ProductScreen;

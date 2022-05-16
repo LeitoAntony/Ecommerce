@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import DetailScreen from "./screens/DetailScreen";
 import ProductScreen from "./screens/ProductScreen";
-import { colors } from "./Styles/Colors";
+import {useFonts} from 'expo-font';
 
 export default function App() {
   const [categorySelected, setCategorySelected] = useState(null);
@@ -16,6 +16,16 @@ export default function App() {
   const handleProduct = (product) => {
     setProductSelected(product);
   };
+
+  const [loaded] = useFonts({
+    Koulen: require('./assets/Fonts/Koulen/Koulen-Regular.ttf'),
+    LatoRegular: require('./assets/Fonts/Lato/Lato-Regular.ttf')
+  });
+  
+  if (!loaded) {
+    return <ActivityIndicator/>;
+  }
+
   return (
     <SafeAreaView style={style.container}>
       {!categorySelected ? (
