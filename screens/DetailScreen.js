@@ -9,7 +9,15 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-const DetailScreen = ({ product, handleProduct }) => {
+const DetailScreen = ({
+  product = {
+    id: 1,
+    category: 1,
+    description: "Product 1",
+    price: 29.99,
+    image: "https://picsum.photos/200/300",
+  },
+}) => {
   const { width, height } = useWindowDimensions();
 
   const [orientation, setOrientation] = useState("portrait");
@@ -33,12 +41,12 @@ const DetailScreen = ({ product, handleProduct }) => {
       />
       <Text>{product.description}</Text>
       <Text>$ {product.price}</Text>
-      <Button
+      {/*<Button
         title="Atras"
         onPress={() => {
           handleProduct(null);
         }}
-      />
+      />*/}
     </View>
   );
 };
@@ -49,10 +57,14 @@ const styles = StyleSheet.create({
   containerVertical: {
     flex: 1,
     flexDirection: "column",
+    justifyContent:'center',
+    alignItems:'center'
   },
   containerHorizontal: {
     flex: 1,
     flexDirection: "row",
+    justifyContent:'center',
+    alignItems:'center'
   },
   image: {
     width: 0.8 * Dimensions.get("window").width,

@@ -20,8 +20,7 @@ import { colors } from "../Styles/Colors";
 
 const ProductScreen = ({
   category = { id: 1, category: "Ropa" },
-  handleProduct,
-  handleCategory,
+  navigation
 }) => {
   const [input, setInput] = useState("");
   const [initialProducts, setInitilProducts] = useState([]);
@@ -50,6 +49,10 @@ const ProductScreen = ({
     setInput("");
   };
 
+  const handleDetailProduct = () =>{
+    navigation.navigate('Detail')
+  }
+
   return (
     <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -73,8 +76,8 @@ const ProductScreen = ({
                         </TouchableOpacity>
                     </Searcher>
                     <View style={styles.listContainer}>
-                        <List data={productsFilter} itemType={"Producto"} onPress={handleProduct} />
-                        <Button title='Go back' onPress={() => handleCategory(null)} />
+                        <List data={productsFilter} itemType={"Producto"} onPress={handleDetailProduct} />
+                        {/*<Button title='Go back' onPress={() => handleCategory(null)} />*/}
                     </View>
                 </View>
             </TouchableWithoutFeedback>

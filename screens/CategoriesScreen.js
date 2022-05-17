@@ -8,7 +8,7 @@ import TextInputCustom from "../components/TextInputCustom";
 import BtnDelete from "../components/BtnDelete";
 import { colors } from "../Styles/Colors";
 
-const CategoriesScreen = ({ }) => {
+const CategoriesScreen = ({ navigation }) => {
   const [input, setInput] = useState("");
   const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES);
 
@@ -29,6 +29,7 @@ const CategoriesScreen = ({ }) => {
 
   const handleSelectedCategory = (category) => {
     //handleCategory(category);
+    navigation.navigate("Products");
   };
 
   return (
@@ -46,7 +47,7 @@ const CategoriesScreen = ({ }) => {
             input={input}
             setInput={setInput}
             onPress={handleDeletesearch}
-            iconName='erase'
+            iconName="erase"
           />
         </Searcher>
         <View style={styles.listContainer}>
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     padding: 5,
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10, 
-    top : -10,
-    backgroundColor: colors.light
+    borderTopRightRadius: 10,
+    top: -10,
+    backgroundColor: colors.light,
   },
   listContainer: {
     flex: 1,
