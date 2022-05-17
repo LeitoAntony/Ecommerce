@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import Header from "../components/Header";
 import Searcher from "../components/Searcher";
 import { CATEGORIES } from "../Data/Categories";
@@ -31,6 +31,7 @@ const CategoriesScreen = ({ navigation }) => {
     //handleCategory(category);
     navigation.navigate("Products");
   };
+
 
   return (
     <>

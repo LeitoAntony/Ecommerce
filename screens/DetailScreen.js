@@ -17,6 +17,7 @@ const DetailScreen = ({
     price: 29.99,
     image: "https://picsum.photos/200/300",
   },
+  navigation
 }) => {
   const { width, height } = useWindowDimensions();
 
@@ -25,6 +26,10 @@ const DetailScreen = ({
   useEffect(() => {
     setOrientation(height > width ? "portrait" : "landscape"), [height, width];
   });
+
+  const handleBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <View
@@ -41,12 +46,7 @@ const DetailScreen = ({
       />
       <Text>{product.description}</Text>
       <Text>$ {product.price}</Text>
-      {/*<Button
-        title="Atras"
-        onPress={() => {
-          handleProduct(null);
-        }}
-      />*/}
+      <Button title="Atras" onPress={handleBack} />
     </View>
   );
 };
@@ -57,14 +57,14 @@ const styles = StyleSheet.create({
   containerVertical: {
     flex: 1,
     flexDirection: "column",
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   containerHorizontal: {
     flex: 1,
     flexDirection: "row",
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: 0.8 * Dimensions.get("window").width,
