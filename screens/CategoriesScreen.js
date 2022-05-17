@@ -8,7 +8,7 @@ import TextInputCustom from "../components/TextInputCustom";
 import BtnDelete from "../components/BtnDelete";
 import { colors } from "../Styles/Colors";
 
-const CategoriesScreen = ({ handleCategory }) => {
+const CategoriesScreen = ({ }) => {
   const [input, setInput] = useState("");
   const [categoriesFilter, setCategoriesFilter] = useState(CATEGORIES);
 
@@ -28,7 +28,7 @@ const CategoriesScreen = ({ handleCategory }) => {
   };
 
   const handleSelectedCategory = (category) => {
-    handleCategory(category);
+    //handleCategory(category);
   };
 
   return (

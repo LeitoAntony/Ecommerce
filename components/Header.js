@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: colors.light,
-    fontWeight:'bold',
-    fontFamily: 'Koulen'
+    fontWeight: "bold",
+    fontFamily: "Koulen",
   },
 });
