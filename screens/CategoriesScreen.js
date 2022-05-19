@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Button } from "react-native";
-import Header from "../components/Header";
 import Searcher from "../components/Searcher";
 import { CATEGORIES } from "../Data/Categories";
 import List from "../components/List";
@@ -29,13 +28,14 @@ const CategoriesScreen = ({ navigation }) => {
 
   const handleSelectedCategory = (category) => {
     //handleCategory(category);
-    navigation.navigate("Products");
+    navigation.navigate("Products", {
+      categoryId: category.id,
+      categoryTitle: category.category,
+    });
   };
-
 
   return (
     <>
-      <Header />
       <View style={styles.container}>
         <Searcher style={styles.searcher}>
           <TextInputCustom
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    top: -10,
     backgroundColor: colors.light,
   },
   listContainer: {

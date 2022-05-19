@@ -17,7 +17,7 @@ const DetailScreen = ({
     price: 29.99,
     image: "https://picsum.photos/200/300",
   },
-  navigation
+  navigation,
 }) => {
   const { width, height } = useWindowDimensions();
 

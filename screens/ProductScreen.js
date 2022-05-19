@@ -7,20 +7,18 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-import { Entypo } from '@expo/vector-icons';
-import Header from "../components/Header";
+import { Entypo } from "@expo/vector-icons";
 import Searcher from "../components/Searcher";
 import { PRODUCTS } from "../Data/Products";
 import List from "../components/List";
 import TextInputCustom from "../components/TextInputCustom";
-import BtnDelete from "../components/BtnDelete";
 import { colors } from "../Styles/Colors";
 
 const ProductScreen = ({
   category = { id: 1, category: "Ropa" },
-  navigation
+  navigation,
 }) => {
   const [input, setInput] = useState("");
   const [initialProducts, setInitilProducts] = useState([]);
@@ -49,9 +47,12 @@ const ProductScreen = ({
     setInput("");
   };
 
-  const handleDetailProduct = () =>{
-    navigation.navigate('Detail')
-  }
+  const handleDetailProduct = (product) => {
+    navigation.navigate("Detail", {
+      productId: product.id,
+      productTitle: product.description,
+    });
+  };
 
   const handleBack = () => {
     navigation.goBack();
@@ -59,34 +60,38 @@ const ProductScreen = ({
 
   return (
     <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.keyboardAvoid}
-        >
-            <Header title={category.category} />
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <Searcher additionalStyles={{
-                        backgroundColor: colors.lightBlue
-                    }}>
-                        <TextInputCustom
-                            value={input}
-                            onChangeText={setInput}
-                            keyboardType="default"
-                            style={styles.input}
-                            placeholder="Ingrese producto a buscar"
-                        />
-                        <TouchableOpacity onPress={handleDeletesearch}>
-                            <Entypo name="erase" size={30} color="black" />
-                        </TouchableOpacity>
-                    </Searcher>
-                    <View style={styles.listContainer}>
-                        <List data={productsFilter} itemType={"Producto"} onPress={handleDetailProduct} />
-                        <Button title='Atras' onPress={handleBack} />
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-
-        </KeyboardAvoidingView>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.keyboardAvoid}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Searcher
+            additionalStyles={{
+              backgroundColor: colors.lightBlue,
+            }}
+          >
+            <TextInputCustom
+              value={input}
+              onChangeText={setInput}
+              keyboardType="default"
+              style={styles.input}
+              placeholder="Ingrese producto a buscar"
+            />
+            <TouchableOpacity onPress={handleDeletesearch}>
+              <Entypo name="erase" size={30} color="black" />
+            </TouchableOpacity>
+          </Searcher>
+          <View style={styles.listContainer}>
+            <List
+              data={productsFilter}
+              itemType={"Producto"}
+              onPress={handleDetailProduct}
+            />
+            <Button title="Atras" onPress={handleBack} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 export default ProductScreen;
@@ -100,7 +105,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    top: -10,
     backgroundColor: colors.light,
   },
   listContainer: {

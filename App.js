@@ -1,6 +1,6 @@
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {useFonts} from 'expo-font';
+import { useFonts } from "expo-font";
 import MainNavigator from "./Navigation/Shop/Index";
 
 export default function App() {
@@ -16,17 +16,17 @@ export default function App() {
 */
 
   const [loaded] = useFonts({
-    Koulen: require('./assets/Fonts/Koulen/Koulen-Regular.ttf'),
-    LatoRegular: require('./assets/Fonts/Lato/Lato-Regular.ttf')
+    Koulen: require("./assets/Fonts/Koulen/Koulen-Regular.ttf"),
+    LatoRegular: require("./assets/Fonts/Lato/Lato-Regular.ttf"),
   });
-  
+
   if (!loaded) {
-    return <ActivityIndicator/>;
+    return <ActivityIndicator />;
   }
 
   return (
-    <SafeAreaView style={{flex:1}}>
-      <MainNavigator/>
+    <SafeAreaView style={{ flex: 1 }}>
+      <MainNavigator />
     </SafeAreaView>
   );
 }
