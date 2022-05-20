@@ -8,46 +8,49 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { PRODUCTS } from "../Data/Products";
 
-const DetailScreen = ({
-  product = {
-    id: 1,
-    category: 1,
-    description: "Product 1",
-    price: 29.99,
-    image: "https://picsum.photos/200/300",
-  },
-  navigation,
-}) => {
+const DetailScreen = ({ navigation, route }) => {
+  const { productId } = route.params;
+
+  const [product, setProduct] = useState(null);
   const { width, height } = useWindowDimensions();
-
   const [orientation, setOrientation] = useState("portrait");
 
   useEffect(() => {
     setOrientation(height > width ? "portrait" : "landscape"), [height, width];
   });
 
+  useEffect(() => {
+    const productSelected = PRODUCTS.find(
+      (product) => product.id === productId
+    );
+    setProduct(productSelected);
+  }, [productId]);
+
   const handleBack = () => {
     navigation.goBack();
   };
 
   return (
-    <View
-      style={
-        orientation === "portrait"
-          ? styles.containerVertical
-          : styles.containerHorizontal
-      }
-    >
-      <Image
-        source={{ uri: product.image }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <Text>{product.description}</Text>
-      <Text>$ {product.price}</Text>
-      <Button title="Atras" onPress={handleBack} />
-    </View>
+    product && (
+      <View
+        style={
+          orientation === "portrait"
+            ? styles.containerVertical
+            : styles.containerHorizontal
+        }
+      >
+        <Image
+          source={{ uri: product?.image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+        <Text>{product?.description}</Text>
+        <Text>$ {product?.price}</Text>
+        <Button title="Atras" onPress={handleBack} />
+      </View>
+    )
   );
 };
 

@@ -28,7 +28,7 @@ const CategoriesScreen = ({ navigation }) => {
 
   const handleSelectedCategory = (category) => {
     //handleCategory(category);
-    navigation.navigate("Products", {
+    navigation.push("Products", {
       categoryId: category.id,
       categoryTitle: category.category,
     });
@@ -41,12 +41,9 @@ const CategoriesScreen = ({ navigation }) => {
           <TextInputCustom
             input={input}
             setInput={setInput}
-            onPress={handleDeletesearch}
             placeholder="Categoria"
           />
           <BtnDelete
-            input={input}
-            setInput={setInput}
             onPress={handleDeletesearch}
             iconName="erase"
           />

@@ -7,27 +7,32 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
-  TouchableOpacity,
-} from "react-native";
-import { Entypo } from "@expo/vector-icons";
+} from "react-native"
 import Searcher from "../components/Searcher";
 import { PRODUCTS } from "../Data/Products";
 import List from "../components/List";
 import TextInputCustom from "../components/TextInputCustom";
 import { colors } from "../Styles/Colors";
+import BtnDelete from "../components/BtnDelete";
 
 const ProductScreen = ({
   category = { id: 1, category: "Ropa" },
   navigation,
+  route,
 }) => {
   const [input, setInput] = useState("");
   const [initialProducts, setInitilProducts] = useState([]);
   const [productsFilter, setProductsFilter] = useState([]);
+  const { categoryId } = route.params;
 
+  const handleDeleteSearch = () => {
+    setInput("");
+  };
   useEffect(() => {
     if (initialProducts.length != 0) {
-      if (input === "") setProductsFilter(initialProducts);
-      else {
+      if (input === "") {
+        setProductsFilter(initialProducts);
+      } else {
         const productosFiltrados = initialProducts.filter((product) =>
           product.description.toLowerCase().includes(input.toLowerCase())
         );
@@ -38,14 +43,12 @@ const ProductScreen = ({
 
   useEffect(() => {
     const productosIniciales = PRODUCTS.filter(
-      (product) => product.category === category.id
+      product => product.category === categoryId
     );
     setInitilProducts(productosIniciales);
-  }, []);
+  }, [categoryId]);
 
-  const handleDeletesearch = () => {
-    setInput("");
-  };
+  
 
   const handleDetailProduct = (product) => {
     navigation.navigate("Detail", {
@@ -65,21 +68,13 @@ const ProductScreen = ({
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          <Searcher
-            additionalStyles={{
-              backgroundColor: colors.lightBlue,
-            }}
-          >
+          <Searcher>
             <TextInputCustom
               value={input}
-              onChangeText={setInput}
-              keyboardType="default"
-              style={styles.input}
+              setInput={setInput}
               placeholder="Ingrese producto a buscar"
             />
-            <TouchableOpacity onPress={handleDeletesearch}>
-              <Entypo name="erase" size={30} color="black" />
-            </TouchableOpacity>
+            <BtnDelete onPress={handleDeleteSearch} iconName="erase" />
           </Searcher>
           <View style={styles.listContainer}>
             <List

@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import { colors } from "../Styles/Colors";
 
-const TextInputCustom = ({ input, setInput, onPress, placeholder }) => {
+const TextInputCustom = ({ input, setInput, placeholder }) => {
   return (
     <View style={styles.container}>
       <TextInput

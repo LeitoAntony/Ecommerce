@@ -36,15 +36,20 @@ function MainNavigator() {
         <Stack.Screen
           name="Products"
           component={ProductScreen}
-          options={({route}) => ({
+          options={({ route }) => ({
             title: route.params.categoryTitle,
+            headerStyle: {
+              backgroundColor:
+                route.params.categoryId === 1 ? colors.dark : colors.background,
+            },
           })}
         />
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          options={({route}) => ({
+          options={({ route }) => ({
             title: route.params.productTitle,
+            headerTintColor: colors.accent,
           })}
         />
       </Stack.Navigator>
