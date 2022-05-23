@@ -42,12 +42,12 @@ const DetailScreen = ({ navigation, route }) => {
         }
       >
         <Image
-          source={{ uri: product?.image }}
+          source={{ uri: product.image }}
           style={styles.image}
           resizeMode="cover"
         />
-        <Text>{product?.description}</Text>
-        <Text>$ {product?.price}</Text>
+        <Text>{product.description}</Text>
+        <Text>$ {product.price}</Text>
         <Button title="Atras" onPress={handleBack} />
       </View>
     )
