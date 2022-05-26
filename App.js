@@ -1,7 +1,7 @@
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
-import MainNavigator from "./Navigation/Shop/Index";
+import MainNavigator from "./Navigation/Index";
 
 export default function App() {
   /*const [categorySelected, setCategorySelected] = useState(null);

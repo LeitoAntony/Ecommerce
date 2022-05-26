@@ -1,16 +1,14 @@
 import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CategoriesScreen from "../../screens/CategoriesScreen";
-import ProductScreen from "../../screens/ProductScreen";
-import DetailScreen from "../../screens/DetailScreen";
-import { colors } from "../../Styles/Colors";
+import CategoriesScreen from "../../../screens/CategoriesScreen";
+import ProductScreen from "../../../screens/ProductScreen";
+import DetailScreen from "../../../screens/DetailScreen";
+import { colors } from "../../../Styles/Colors";
 
 const Stack = createNativeStackNavigator();
 
-function MainNavigator() {
-  return (
-    <NavigationContainer>
+function ShopNavigator() {
+  return (   
       <Stack.Navigator
         initialRouteName="Categories"
         screenOptions={{
@@ -52,10 +50,9 @@ function MainNavigator() {
           })}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
-export default MainNavigator;
+export default ShopNavigator;
 
 const styles = StyleSheet.create({});
