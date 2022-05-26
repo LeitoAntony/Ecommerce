@@ -1,18 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CategoriesScreen from "../../screens/CategoriesScreen";
-import ProductScreen from "../../screens/ProductScreen";
-import DetailScreen from "../../screens/DetailScreen";
-import { colors } from "../../Styles/Colors";
 
-const Stack = createNativeStackNavigator();
-
-function MainNavigator() {
+const Index = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Categories"
+        initialRouteName=""
         screenOptions={{
           headerStyle: {
             backgroundColor: colors.background,
@@ -53,9 +48,9 @@ function MainNavigator() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
-export default MainNavigator;
+export default Index
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
