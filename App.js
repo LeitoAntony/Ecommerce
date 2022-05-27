@@ -1,5 +1,5 @@
 import { ActivityIndicator } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import MainNavigator from "./Navigation/Index";
 
@@ -25,8 +25,8 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <MainNavigator />
-    </SafeAreaView>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <MainNavigator />
+    </SafeAreaProvider>
   );
 }

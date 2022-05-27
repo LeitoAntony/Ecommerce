@@ -2,12 +2,15 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigatorLogged from "./Tabs/UserLogged/Index";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainNavigator = () => {
   return (
-    <NavigationContainer>
-      <TabNavigatorLogged />
-    </NavigationContainer>
+    <SafeAreaView style={{flex:1}}>
+      <NavigationContainer>
+        <TabNavigatorLogged />
+      </NavigationContainer>
+    </SafeAreaView>
   );
 };
 

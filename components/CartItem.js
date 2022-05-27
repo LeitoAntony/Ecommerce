@@ -1,6 +1,5 @@
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { colors } from '../Styles/colors';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from '../Styles/Colors';
 import {Ionicons} from '@expo/vector-icons';
 
 const CartItem = ({item, onDelete}) => {
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 8,
         borderBottomWidth: 1,
-        borderBottomColor: colors.beige
+        borderBottomColor: colors.dark
     },
     header: {
         fontSize: 18,
