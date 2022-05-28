@@ -21,7 +21,6 @@ export default OrderItem;
 
 const styles = StyleSheet.create({
   order: {
-    flex: 1,
     padding: 8,
     borderBottomWidth: 1,
     borderBottomColor: colors.dark,
@@ -33,8 +32,6 @@ const styles = StyleSheet.create({
     borderColor: colors.secondary,
     borderWidth: 1,
     borderRadius: 6,
-    height: 100,
-    backgroundColor: colors.dark,
   },
   date: {
     fontSize: 18,
