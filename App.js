@@ -1,20 +1,14 @@
 import { ActivityIndicator } from "react-native";
-import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
-import MainNavigator from "./Navigation/Index";
+import MainNavigator from "./Navigation";
+import store from './store';
+import { Provider } from "react-redux"; 
 
 export default function App() {
-  /*const [categorySelected, setCategorySelected] = useState(null);
-  const [productSelected, setProductSelected] = useState(null);
-
-  const handleCategory = (category) => {
-    setCategorySelected(category);
-  };
-  const handleProduct = (product) => {
-    setProductSelected(product);
-  };
-*/
-
   const [loaded] = useFonts({
     Koulen: require("./assets/Fonts/Koulen/Koulen-Regular.ttf"),
     LatoRegular: require("./assets/Fonts/Lato/Lato-Regular.ttf"),
@@ -25,8 +19,10 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+    <Provider store={store}>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <MainNavigator />
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </Provider>
   );
 }

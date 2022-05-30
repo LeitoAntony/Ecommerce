@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ShopNavigator from "../../Stacks/Shop/Index";
-import CartStack from "../../Stacks/Cart/Index";
+import ShopNavigator from "../../Stacks/Shop";
+import CartStack from "../../Stacks/Cart";
 import { Entypo } from "@expo/vector-icons";
 import { colors } from "../../../Styles/Colors";
-import OrdersStack from "../../Stacks/Orders/Index";
+import OrdersStack from "../../Stacks/Orders";
 
 const BottomTabs = createBottomTabNavigator();
 
