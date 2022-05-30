@@ -8,12 +8,13 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { PRODUCTS } from "../Data/Products";
+import { useSelector } from "react-redux";
 
 const DetailScreen = ({ navigation, route }) => {
-  const { productId } = route.params;
+  //const { productId } = route.params;
 
-  const [product, setProduct] = useState(null);
+  //const [product, setProduct] = useState(null);
+  const {productSelected} = useSelector(state => state.products.value)
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
 
@@ -21,19 +22,19 @@ const DetailScreen = ({ navigation, route }) => {
     setOrientation(height > width ? "portrait" : "landscape"), [height, width];
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     const productSelected = PRODUCTS.find(
       (product) => product.id === productId
     );
     setProduct(productSelected);
-  }, [productId]);
+  }, [productId]);*/
 
   const handleBack = () => {
     navigation.goBack();
   };
 
   return (
-    product && (
+    productSelected && (
       <View
         style={
           orientation === "portrait"
@@ -42,12 +43,12 @@ const DetailScreen = ({ navigation, route }) => {
         }
       >
         <Image
-          source={{ uri: product.image }}
+          source={{ uri: productSelected.image }}
           style={styles.image}
           resizeMode="cover"
         />
-        <Text>{product.description}</Text>
-        <Text>$ {product.price}</Text>
+        <Text>{productSelected.description}</Text>
+        <Text>$ {productSelected.price}</Text>
         <Button title="Atras" onPress={handleBack} />
       </View>
     )

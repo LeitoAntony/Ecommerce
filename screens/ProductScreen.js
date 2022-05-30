@@ -9,11 +9,12 @@ import {
   Platform,
 } from "react-native"
 import Searcher from "../components/Searcher";
-import { PRODUCTS } from "../Data/Products";
 import List from "../components/List";
 import TextInputCustom from "../components/TextInputCustom";
 import { colors } from "../Styles/Colors";
 import BtnDelete from "../components/BtnDelete";
+import {useDispatch, useSelector} from 'react-redux'
+import { setProductSelected } from "../Features/Products";
 
 const ProductScreen = ({
   category = { id: 1, category: "Ropa" },
@@ -21,38 +22,43 @@ const ProductScreen = ({
   route,
 }) => {
   const [input, setInput] = useState("");
-  const [initialProducts, setInitilProducts] = useState([]);
+  //const [initialProducts, setInitilProducts] = useState([]);
   const [productsFilter, setProductsFilter] = useState([]);
+  const { productsByCategory } = useSelector(state => state.products.value)
   const { categoryId } = route.params;
+
+  const {products} = useSelector(state => state.products.value.products)
+  const dispatch = useDispatch();
 
   const handleDeleteSearch = () => {
     setInput("");
   };
   useEffect(() => {
-    if (initialProducts.length != 0) {
+    if (productsByCategory.length != 0) {
       if (input === "") {
-        setProductsFilter(initialProducts);
+        setProductsFilter(productsByCategory);
       } else {
-        const productosFiltrados = initialProducts.filter((product) =>
+        const productosFiltrados = productsByCategory.filter((product) =>
           product.description.toLowerCase().includes(input.toLowerCase())
         );
         setProductsFilter(productosFiltrados);
       }
     }
-  }, [input, initialProducts]);
+  }, [input, productsByCategory]);
 
-  useEffect(() => {
-    const productosIniciales = PRODUCTS.filter(
+  /*useEffect(() => {
+    const productosIniciales = products.filter(
       product => product.category === categoryId
     );
     setInitilProducts(productosIniciales);
   }, [categoryId]);
-
+*/
   
 
   const handleDetailProduct = (product) => {
+    dispatch(setProductSelected(product.id))
+    
     navigation.navigate("Detail", {
-      productId: product.id,
       productTitle: product.description,
     });
   };

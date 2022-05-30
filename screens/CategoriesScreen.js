@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Searcher from "../components/Searcher";
-import { CATEGORIES } from "../Data/Categories";
 import List from "../components/List";
 import TextInputCustom from "../components/TextInputCustom";
 import BtnDelete from "../components/BtnDelete";
 import { colors } from "../Styles/Colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategory } from "../Features/Categories";
+import { setProductsByCategory } from "../Features/Products";
 
 const CategoriesScreen = ({ navigation }) => {
   const [input, setInput] = useState("");
   const [categoriesFilter, setCategoriesFilter] = useState();
 
   const {categories} = useSelector((state) => state.categories.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (input === "") setCategoriesFilter(categories);
@@ -25,12 +27,14 @@ const CategoriesScreen = ({ navigation }) => {
   }, [input]);
 
   const handleDeletesearch = () => {
-    setCategoriesFilter(CATEGORIES);
+    setCategoriesFilter(categories);
     setInput("");
   };
 
   const handleSelectedCategory = (category) => {
     //handleCategory(category);
+    dispatch(setProductsByCategory(category.id))
+    dispatch(selectCategory(category.id))
     navigation.push("Products", {
       categoryId: category.id,
       categoryTitle: category.category,
