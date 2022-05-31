@@ -5,8 +5,8 @@ import {
 } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import MainNavigator from "./Navigation";
-import store from './store';
-import { Provider } from "react-redux"; 
+import store from "./store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const [loaded] = useFonts({
