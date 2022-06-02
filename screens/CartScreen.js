@@ -5,26 +5,32 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
-import { PRODUCTSELECTED } from "../Data/ProductSelected";
+import { confirmPurchase } from "../Features/Cart";
 import { colors } from "../Styles/Colors";
 
 const handleDelete = (id) =>
   console.log(`Se elimina del carrito el producto con id: ${id}`);
-const handleConfirm = () => console.log("Se confirma la compra");
 
 const renderItem = (data) => (
   <CartItem item={data.item} onDelete={handleDelete} />
 );
 
 const CartScreen = () => {
+  const { cart } = useSelector((state) => state.cart.value);
+  const dispatch = useDispatch();
+  const handleConfirm = () => {
+    dispatch(confirmPurchase(cart));
+  };
+
   const total = 12000;
 
   return (
     <View style={styles.container}>
       <View style={styles.list}>
         <FlatList
-          data={PRODUCTSELECTED}
+          data={cart}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
         />
@@ -74,6 +80,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "LatoRegular",
     padding: 8,
-    color : colors.light
+    color: colors.light,
   },
 });

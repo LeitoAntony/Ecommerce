@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import {
     FlatList,
     StyleSheet,
     View,
   } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import OrderItem from "../components/OrderItem";
   import { ORDERS } from "../Data/Order";
+import { getOrders } from "../Features/Orders";
   import { colors } from "../Styles/Colors";
   
   const renderItem = (data) => (
@@ -12,12 +15,17 @@ import OrderItem from "../components/OrderItem";
   );
   
   const OrdersScreen = () => {
+    const {orders} = useSelector((state) => state.orders.value)
+    const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(getOrders())
+    }, [])
     return (
       <View style={styles.container}>
         <View style={styles.list}>
           <FlatList
-            data={ORDERS}
-            keyExtractor={(item) => item.id}
+            data={orders}
+            keyExtractor={(item) => item.date}
             renderItem={renderItem}
           />
         </View>

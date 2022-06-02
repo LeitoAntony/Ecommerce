@@ -43,7 +43,7 @@ const TabNavigatorLogged = () => {
           ),
         }}
       />
-      <BottomTabs.Screen
+      {<BottomTabs.Screen
         name="OrdersTab"
         component={OrdersStack}
         options={{
@@ -56,7 +56,7 @@ const TabNavigatorLogged = () => {
             );
           },
         }}
-      />
+      />}
     </BottomTabs.Navigator>
   );
 };

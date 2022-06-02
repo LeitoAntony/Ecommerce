@@ -7,11 +7,12 @@ const formatDay = (time) => {
 };
 
 const OrderItem  = ({ item }) => {
+  console.log(item)
   return (
     <View style={styles.order}>
       <View>
         <Text style={styles.date}>{formatDay(item.date)}</Text>
-        <Text style={styles.total}>${item.total}</Text>
+        <Text style={styles.total}>${item.items[0].price}</Text>
       </View>
     </View>
   );

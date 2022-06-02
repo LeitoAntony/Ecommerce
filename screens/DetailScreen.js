@@ -8,13 +8,15 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../Features/Cart";
 
 const DetailScreen = ({ navigation, route }) => {
   //const { productId } = route.params;
 
   //const [product, setProduct] = useState(null);
-  const {productSelected} = useSelector(state => state.products.value)
+  const { productSelected } = useSelector((state) => state.products.value);
+  const dispatch = useDispatch();
   const { width, height } = useWindowDimensions();
   const [orientation, setOrientation] = useState("portrait");
 
@@ -33,6 +35,10 @@ const DetailScreen = ({ navigation, route }) => {
     navigation.goBack();
   };
 
+  const handleAdd = (id) => {
+    dispatch(addItem({ id }));
+  };
+
   return (
     productSelected && (
       <View
@@ -49,7 +55,10 @@ const DetailScreen = ({ navigation, route }) => {
         />
         <Text>{productSelected.description}</Text>
         <Text>$ {productSelected.price}</Text>
-        <Button title="Atras" onPress={handleBack} />
+        <Button
+          title="Agregar al carrito"
+          onPress={() => handleAdd(productSelected.id)}
+        />
       </View>
     )
   );
