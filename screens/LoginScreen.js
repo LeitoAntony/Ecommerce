@@ -5,6 +5,7 @@ import InputCustom from "../components/InputCustom";
 import { signUp } from "../Features/Auth";
 import { colors } from "../Styles/Colors";
 import { useDispatch } from "react-redux";
+import { schemaEmail } from "../Utils/valiateSchemas";
 
 const LoginScreen = () => {
   const [registroVista, setRegistroVista] = useState(false);
@@ -15,9 +16,11 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleSignUp = () => {
-    if (password === passwordConfirm) {
+    const validateEmail = schemaEmail.validate({email: email})
+      console.log(validateEmail);
+    /*if (password === passwordConfirm) {
       dispatch(signUp({ email: email, password : password }));
-    }
+    }*/
   };
 
   return (
