@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
 import { colors } from "../Styles/Colors";
 
 const HorizontalDivider = ({aditionalStyles}) => {
@@ -17,6 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     margin: 5,
+    backgroundColor: colors.light
   },
   divider: {
     flex: 1,
