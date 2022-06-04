@@ -43,6 +43,9 @@ export const authSlice = createSlice({
       state.value.loading = true;
     },
     [signUp.fulfilled]: (state, { payload }) => {
+      if(payload.error){
+        state.value.error = payload.error.message
+      }
       (state.value.user.userId = payload.localId),
         (state.value.user.email = payload.email),
         (state.value.user.token = payload.idToken),

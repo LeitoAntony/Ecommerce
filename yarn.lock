@@ -5563,6 +5563,11 @@
   "resolved" "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz"
   "version" "2.1.0"
 
+"fastestsmallesttextencoderdecoder-encodeinto@^1.0.22":
+  "integrity" "sha512-csOz3cwJjZY75QcPHnY+v6cKWeofYCmhtLVYaurjcRn5vaNXoYe1Leo1ZkiZIxZp796+J5Z+TtmeMbbfYBfiiQ=="
+  "resolved" "https://registry.npmjs.org/fastestsmallesttextencoderdecoder-encodeinto/-/fastestsmallesttextencoderdecoder-encodeinto-1.0.22.tgz"
+  "version" "1.0.22"
+
 "fastq@^1.6.0":
   "integrity" "sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw=="
   "resolved" "https://registry.npmjs.org/fastq/-/fastq-1.13.0.tgz"
