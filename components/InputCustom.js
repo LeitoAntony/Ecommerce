@@ -1,20 +1,21 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { colors } from "../Styles/Colors";
 
-const InputCustom = ({ label, password = false, onChange, value, keyboardType ='default' }) => {
+const InputCustom = ({label, password = false, onChange, value, error = null, onBlur}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{label}</Text>
+        <Text style={styles.text}>{label}</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChange}
         secureTextEntry={password}
-        keyboardType={keyboardType}
         value={value}
+        onBlur={onBlur}
       />
+        {error ? <Text style={styles.error}>{error}</Text>: null}
     </View>
-  );
-};
+  )
+}
 
 export default InputCustom;
 
@@ -43,8 +44,9 @@ const styles = StyleSheet.create({
     },
     error: {
       fontFamily: 'LatoRegular',
-      fontSize: 12,
+      fontSize: 14,
       marginBottom: 4,
-      color: 'red',
+      color: colors.dark,
+      paddingTop: 8,
     }
 })

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     FlatList,
     StyleSheet,
@@ -6,7 +6,6 @@ import {
   } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import OrderItem from "../components/OrderItem";
-  import { ORDERS } from "../Data/Order";
 import { getOrders } from "../Features/Orders";
   import { colors } from "../Styles/Colors";
   

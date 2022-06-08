@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 
 const MainNavigator = () => {
   const {user} = useSelector(state => state.auth.value)
-  console.log(user);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        {user.token ? <TabNavigatorLogged /> : <AuthStack />}
+        {//user.token 
+        <TabNavigatorLogged /> }
       </NavigationContainer>
     </SafeAreaView>
   );

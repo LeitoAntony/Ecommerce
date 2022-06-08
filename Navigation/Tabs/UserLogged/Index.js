@@ -6,6 +6,7 @@ import CartStack from "../../Stacks/Cart";
 import { Entypo } from "@expo/vector-icons";
 import { colors } from "../../../Styles/Colors";
 import OrdersStack from "../../Stacks/Orders";
+import LocationStack from "../../Stacks/Locations";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -43,7 +44,7 @@ const TabNavigatorLogged = () => {
           ),
         }}
       />
-      {<BottomTabs.Screen
+      <BottomTabs.Screen
         name="OrdersTab"
         component={OrdersStack}
         options={{
@@ -56,7 +57,21 @@ const TabNavigatorLogged = () => {
             );
           },
         }}
-      />}
+      />
+      <BottomTabs.Screen
+        name="Locations"
+        component={LocationStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View style={styles.item}>
+                <Entypo name="location" size={24} color={colors.dark} />
+                <Text>Direcciones</Text>
+              </View>
+            );
+          },
+        }}
+      />
     </BottomTabs.Navigator>
   );
 };
