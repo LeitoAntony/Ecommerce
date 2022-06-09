@@ -13,13 +13,14 @@ const initialState = {
 export const confirmPurchase = createAsyncThunk(
   "cart/confirm",
 
-  async (items, asyncThunk) => {
+  async (dataInput, asyncThunk) => {
     try {
       const res = await fetch(`${DB_URL}order.json`, {
         method: "POST",
         body: JSON.stringify({
           date: new Date().toLocaleString(),
-          items: items,
+          items: dataInput.cart,
+          email : dataInput.email
         }),
       });
       const data = res.json();

@@ -1,8 +1,18 @@
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  ScrollView,
+} from "react-native";
 import { colors } from "../Styles/Colors";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../Features/Locations";
+import * as ImagePicker from "expo-image-picker";
+import renamePathAndMove from "../Utils/renamepath";
 
 const SaveLocationScreen = () => {
   const [title, setTitle] = useState("");
@@ -10,11 +20,45 @@ const SaveLocationScreen = () => {
 
   const dispatch = useDispatch();
 
-  const handleTakePicture = () => {};
-  const handlePickLibrary = () => {};
+  const handleTakePicture = async () => {
+    const isVerified = getPermission();
+    if (!isVerified) {
+      return;
+    }
+
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 1,
+    });
+    setPicture(image.uri);
+  };
+  const handlePickLibrary = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setPicture(result.uri);
+    }
+  };
   const handleConfirm = async () => {
-    dispatch(addLocation(title))
-    setTitle('')
+    const path = await renamePathAndMove(picture);
+    dispatch(addLocation({ title, picture, id: Date.now() }));
+    setTitle("");
+    setPicture("");
+  };
+
+  const getPermission = async () => {
+    const { status } = await ImagePicker.getCameraPermissionsAsync();
+    if (status !== "granted") {
+      return false;
+    }
+
+    return true;
   };
 
   return (
@@ -43,7 +87,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "90%",
-    height: 200,
+    height: "50%",
     borderWidth: 2,
     borderRadius: 8,
     borderColor: colors.primary,

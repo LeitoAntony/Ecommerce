@@ -19,9 +19,11 @@ const renderItem = (data) => (
 
 const CartScreen = () => {
   const { cart } = useSelector((state) => state.cart.value);
+  const { user } = useSelector((state) => state.auth.value);
   const dispatch = useDispatch();
   const handleConfirm = () => {
-    dispatch(confirmPurchase(cart));
+    dispatch(confirmPurchase({cart : cart, email : 'leitoantony862@gmail.com'//user.email
+    }));
   };
 
   const total = 12000;
