@@ -5,6 +5,8 @@ import LocationsScreen from "../../../screens/LocationsScreen";
 import SaveLocationScreen from "../../../screens/SaveLocationScreen";
 import { colors } from "../../../Styles/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import GetLocationScreen from "../../../screens/GetLocationScreen";
+import SetLocationScreen from "../../../screens/SetLocationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,24 @@ const LocationStack = () => {
       options={
           {
               title:'Guardar direccion'
+          }
+      }
+      />
+      <Stack.Screen
+      name="Get-Location"
+      component={GetLocationScreen}
+      options={
+          {
+              title:'Obtener ubicacion'
+          }
+      }
+      />
+      <Stack.Screen
+      name="Set-Location"
+      component={SetLocationScreen}
+      options={
+          {
+              title:'Definir ubicacion'
           }
       }
       />

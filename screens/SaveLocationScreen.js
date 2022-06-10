@@ -14,9 +14,11 @@ import { addLocation } from "../Features/Locations";
 import * as ImagePicker from "expo-image-picker";
 import renamePathAndMove from "../Utils/renamepath";
 
-const SaveLocationScreen = () => {
+const SaveLocationScreen = ({ navigation, route }) => {
   const [title, setTitle] = useState("");
   const [picture, setPicture] = useState("");
+
+  const params = route.params;
 
   const dispatch = useDispatch();
 
@@ -47,9 +49,15 @@ const SaveLocationScreen = () => {
   };
   const handleConfirm = async () => {
     const path = await renamePathAndMove(picture);
-    dispatch(addLocation({ title, picture, id: Date.now() }));
+    dispatch(
+      addLocation({ title, picture, id: Date.now(), address: params?.address })
+    );
     setTitle("");
     setPicture("");
+  };
+
+  const handleSetLocation = () => {
+    navigation.navigate("Set-Location");
   };
 
   const getPermission = async () => {
@@ -57,8 +65,11 @@ const SaveLocationScreen = () => {
     if (status !== "granted") {
       return false;
     }
-
     return true;
+  };
+
+  const handleLocation = async () => {
+    navigation.navigate("Get-Location");
   };
 
   return (
@@ -70,6 +81,8 @@ const SaveLocationScreen = () => {
       ) : null}
       <Button title="Tomar una foto" onPress={handleTakePicture} />
       <Button title="Seleccionar de la galería" onPress={handlePickLibrary} />
+      <Button title="Obtener ubicacion" onPress={handleLocation} />
+      <Button title="Definir ubicacion" onPress={handleSetLocation} />
       <Button title="Confirmar" onPress={handleConfirm}></Button>
     </View>
   );
