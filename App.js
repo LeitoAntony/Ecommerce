@@ -7,6 +7,14 @@ import { useFonts } from "expo-font";
 import MainNavigator from "./Navigation";
 import store from "./store";
 import { Provider } from "react-redux";
+import { init } from "./DB"; 
+
+init()
+.then(() => {console.log('db initialiezed')})
+.catch((err) => {
+  console.log('error loading db')
+  console.log(err)
+})
 
 export default function App() {
   const [loaded] = useFonts({

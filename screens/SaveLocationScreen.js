@@ -10,7 +10,7 @@ import {
 import { colors } from "../Styles/Colors";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addLocation } from "../Features/Locations";
+import { addLocation, addLocationDb } from "../Features/Locations";
 import * as ImagePicker from "expo-image-picker";
 import renamePathAndMove from "../Utils/renamepath";
 
@@ -51,6 +51,14 @@ const SaveLocationScreen = ({ navigation, route }) => {
     const path = await renamePathAndMove(picture);
     dispatch(
       addLocation({ title, picture, id: Date.now(), address: params?.address })
+    );
+    dispatch(
+      addLocationDb({
+        title,
+        picture,
+        id: Date.now(),
+        address: params?.address,
+      })
     );
     setTitle("");
     setPicture("");
